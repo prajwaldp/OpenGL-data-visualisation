@@ -13,12 +13,16 @@ Dataset DataSetReader::read() {
   Data item;
   Dataset tester;
 
-  for (i = 1; i <= 10; i++) {
-    item.x = i;
-    item.y = i;
-    item.z = i;
+  int a, b, c;
 
-    tester.push_back(item);
+  ifstream infile("data.json");
+
+  if (infile.is_open()) {
+    while (infile >> item.x >> item.y >> item.z) {
+      tester.push_back(item);
+    }
+  } else {
+    cout << "File not found\n";
   }
 
   return tester;
