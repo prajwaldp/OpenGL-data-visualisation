@@ -4,9 +4,7 @@
 
 using namespace std;
 
-const int WINDOW_WIDTH = 700;
-const int WINDOW_HEIGHT = 700;
-
+#include "constants_and_globals.h"
 #include "custom_types.h"
 #include "primitive.h"
 #include "data_set_reader.h"
