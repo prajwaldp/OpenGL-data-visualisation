@@ -498,11 +498,13 @@ void Utility::menu(int id) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     ScatterPlot3D scatter_plot_3d;
     scatter_plot_3d.display();
+    break;
 
   case 5:
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     Stem3D stem_3d;
     stem_3d.display();
+    break;
   }
 
   glutPostRedisplay();
