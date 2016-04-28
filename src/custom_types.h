@@ -8,6 +8,7 @@ typedef struct {
 
 typedef struct {
   GLfloat x, y, z;
+  string label;
 } Data;
 
 typedef struct {
