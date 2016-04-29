@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -9,6 +10,7 @@ using namespace std;
 #include "custom_types.h"
 #include "primitive.h"
 #include "data_set_reader.h"
+#include "plot.h"
 #include "bar_graph.h"
 #include "scatter_plot.h"
 #include "stem.h"
@@ -18,6 +20,8 @@ using namespace std;
 
 void display()
 {
+  // Utility::write("Hello, World!", 0, 0, "center");
+
   glutSwapBuffers();
   glFlush();
 }

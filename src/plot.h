@@ -1,13 +1,13 @@
-#ifndef BAR_GRAPH_H
-#define BAR_GRAPH_H
+#ifndef PLOT_H
+#define PLOT_H
 
-class BarGraph
+class Plot
 {
 public:
   void display();
 };
 
-void BarGraph::display()
+void Plot::display()
 {
   int i;
   int max_x, max_y, min_x, min_y;
@@ -69,14 +69,13 @@ void BarGraph::display()
     Primitive::write(s, -0.9, height);
   }
 
-  // Plotting bar graph
+  Vertex old_v = {-0.8 + width / 2.f, -0.8, 0, graph_color.r, graph_color.g, graph_color.b, graph_color.a};
   for (i = 0; i < X.size(); i++) {
     height = -0.8 + 1.6 * X[i].y / (max_y - min_y);
-    Vertex v1 = {current + gap, -0.8, 0, graph_color.r, graph_color.g, graph_color.b, graph_color.a};
-    Vertex v2 = {current + width - 2 * gap, -0.8, 0, graph_color.r, graph_color.g, graph_color.b, graph_color.a};
-    Vertex v3 = {current + width - 2 * gap, height, 0, graph_color.r, graph_color.g, graph_color.b, graph_color.a};
-    Vertex v4 = {current + gap, height, 0, graph_color.r, graph_color.g, graph_color.b, graph_color.a};
-    Primitive::filled_quad(v1, v2, v3, v4);
+    Vertex new_v = {current + width / 2.f, height, 0, graph_color.r, graph_color.g, graph_color.b, graph_color.a};\
+    Primitive::line(new_v, old_v, 1);
+    Primitive::point(new_v, 10);
+    old_v = new_v;
     Primitive::write(X[i].label, current + gap, -0.85);
     current += width;
   }

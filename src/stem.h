@@ -11,7 +11,7 @@ void Stem::display()
 {
   int i;
   int max_x, max_y, min_x, min_y;
-  float width;
+  float width, gap;
 
   Dataset X;
 
@@ -50,16 +50,32 @@ void Stem::display()
   Primitive::unfilled_quad(v1, v2, v3, v4, 1);
 
   width = 1.6 / X.size();
+  gap = width / 100;
   Color graph_color = { 23 / 255.0, 55 / 255.0, 83 / 255.0, 1 };
+  Color graph_lines_color = { 210 / 255.0, 210 / 255.0, 210 / 255.0, 1 };
 
   float current = -0.8;
   float height;
+
+  // Graph lines
+  for (i = 0; i <= 10; i++) {
+    height = -0.8 + i * 1.6 / 10;
+    Vertex v1 = {-0.8, height, 0, graph_lines_color.r, graph_lines_color.g, graph_lines_color.b, graph_lines_color.a};
+    Vertex v2 = {0.8, height, 0, graph_lines_color.r, graph_lines_color.g, graph_lines_color.b, graph_lines_color.a};
+    Primitive::line(v1, v2, 1);
+    ostringstream ss;
+    ss << i * (max_y) / 10;
+    std::string s(ss.str());
+    Primitive::write(s, -0.9, height);
+  }
+
   for (i = 0; i < X.size(); i++) {
     height = -0.8 + 1.6 * X[i].y / (max_y - min_y);
     Vertex v1 = {current + width / 2.f, -0.8, 0, graph_color.r, graph_color.g, graph_color.b, graph_color.a};
     Vertex v2 = {current + width / 2.f, height, 0, graph_color.r, graph_color.g, graph_color.b, graph_color.a};
     Primitive::line(v1, v2, 1);
     Primitive::point(v2, 10);
+    Primitive::write(X[i].label, current + gap, -0.85);
     current += width;
   }
 }

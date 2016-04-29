@@ -7,6 +7,7 @@ namespace Primitive {
   void unfilled_quad(Vertex, Vertex, Vertex, Vertex, GLfloat);
   void filled_quad(Vertex, Vertex, Vertex, Vertex);
   void unfilled_cube(Vertex, Vertex, Vertex, Vertex, Vertex, Vertex, Vertex, Vertex, GLfloat);
+  void write(string, GLfloat, GLfloat, string, string);
 };
 
 void Primitive::point(Vertex v, GLfloat size) {
@@ -57,6 +58,17 @@ void Primitive::unfilled_cube(Vertex v1, Vertex v2, Vertex v3, Vertex v4, Vertex
   Primitive::line(v2, v6, width);
   Primitive::line(v3, v7, width);
   Primitive::line(v4, v8, width);
+}
+
+void Primitive::write(string text, GLfloat x, GLfloat y, string align="left", string size="small") {
+  int i;
+  glColor4f(0, 0, 0, 1);
+
+  glRasterPos2f(x, y);
+
+  for (i = 0; text[i] != '\0'; i++) {
+    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, text[i]);
+  }
 }
 
 #endif
