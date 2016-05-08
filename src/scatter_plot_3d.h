@@ -82,6 +82,7 @@ void ScatterPlot3D::display() {
     z = -0.8 + 1.6 * X[i].z / (max_z - min_z);
     Vertex v = {current + width / 2.f, y, z, graph_color.r, graph_color.g, graph_color.b, graph_color.a};
     Primitive::point(v, 10);
+    Primitive::write(X[i].label, current + width / 2.f, y, z);
     current += width;
   }
   glPopMatrix();

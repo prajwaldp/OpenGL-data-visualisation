@@ -84,6 +84,7 @@ void Stem3D::display() {
     Vertex v2 = {current + width / 2.f, y, z, graph_color.r, graph_color.g, graph_color.b, graph_color.a};
     Primitive::line(v1, v2, 1);
     Primitive::point(v2, 10);
+    Primitive::write(X[i].label, current + width / 2.f, y, z);
     current += width;
   }
   glPopMatrix();
