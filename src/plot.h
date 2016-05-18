@@ -51,8 +51,8 @@ void Plot::display()
 
   width = 1.6 / X.size();
   gap = width / 100;
-  Color graph_color = { 23 / 255.0, 55 / 255.0, 83 / 255.0, 1 };
-  Color graph_lines_color = { 210 / 255.0, 210 / 255.0, 210 / 255.0, 1 };
+  Color graph_color = { 23 / 255.0, 55 / 255.0, 83 / 255.0, 1.0 };
+  Color graph_lines_color = { 210 / 255.0, 210 / 255.0, 210 / 255.0, 1.0 };
 
   float current = -0.8;
   float height;
@@ -69,10 +69,11 @@ void Plot::display()
     Primitive::write(s, -0.9, height);
   }
 
-  Vertex old_v = {-0.8 + width / 2.f, -0.8, 0, graph_color.r, graph_color.g, graph_color.b, graph_color.a};
+  height = -0.8 + 1.6 * X[0].y / (max_y - min_y);
+  Vertex old_v = {current + width / 2.f, height, 0, graph_color.r, graph_color.g, graph_color.b, graph_color.a};
   for (i = 0; i < X.size(); i++) {
     height = -0.8 + 1.6 * X[i].y / (max_y - min_y);
-    Vertex new_v = {current + width / 2.f, height, 0, graph_color.r, graph_color.g, graph_color.b, graph_color.a};\
+    Vertex new_v = {current + width / 2.f, height, 0, graph_color.r, graph_color.g, graph_color.b, graph_color.a};
     Primitive::line(new_v, old_v, 1);
     Primitive::point(new_v, 10);
     old_v = new_v;

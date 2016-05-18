@@ -7,7 +7,7 @@ namespace Primitive {
   void unfilled_quad(Vertex, Vertex, Vertex, Vertex, GLfloat);
   void filled_quad(Vertex, Vertex, Vertex, Vertex);
   void unfilled_cube(Vertex, Vertex, Vertex, Vertex, Vertex, Vertex, Vertex, Vertex, GLfloat);
-  void write(string, GLfloat, GLfloat, GLfloat, string, string);
+  void write(string, GLfloat, GLfloat, GLfloat);
 };
 
 void Primitive::point(Vertex v, GLfloat size) {
@@ -60,16 +60,22 @@ void Primitive::unfilled_cube(Vertex v1, Vertex v2, Vertex v3, Vertex v4, Vertex
   Primitive::line(v4, v8, width);
 }
 
-void Primitive::write(string text, GLfloat x, GLfloat y, GLfloat z=0, string align="left", string size="small") {
-  int i;
-  glColor4f(0, 0, 0, 1);
+void Primitive::write(string text, GLfloat x, GLfloat y, GLfloat z=0) {
+  FTPixmapFont font("/usr/share/fonts/TTF/Inconsolata-Bold.ttf");
+
+  // If something went wrong, bail out.
+  if(font.Error()) {
+    return;
+  }
+
+  FTPoint p(x, y, z);
 
   glRasterPos3f(x, y, z);
+  font.FaceSize(16);
+  font.Render(text.c_str(), -1, p);
 
-  for (i = 0; text[i] != '\0'; i++) {
-    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, text[i]);
-    glutBitmapWidth(GLUT_BITMAP_HELVETICA_12, 20);
-  }
+  glutSwapBuffers();
+  glFlush();
 }
 
 #endif

@@ -1,4 +1,5 @@
 #include <GL/glut.h>
+#include <FTGL/ftgl.h>
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -18,9 +19,39 @@ using namespace std;
 #include "stem_3d.h"
 #include "utility.h"
 
+void set_orthographic()
+{
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+
+  //Orthographic Projection
+  glOrtho(-1.f, -1.f, -1.f, 1.f, 1.f, -1.f);
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+}
+
+void set_perspective()
+{
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  gluPerspective(90, (float) WINDOW_WIDTH / WINDOW_HEIGHT, 1, 10);
+
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+  gluLookAt(0, 0, 1, 0, 0, 0, 0, 1, 0);
+}
+
 void display()
 {
-  // Utility::write("Hello, World!", 0, 0, "center");
+  FTTextureFont font("/usr/share/fonts/TTF/Inconsolata-Bold.ttf");
+
+  font.FaceSize(72);
+  glPushMatrix();
+  set_perspective();
+  glColor3f(1, 1, 1);
+  font.Render("Hello");
+  set_orthographic();
+  glPopMatrix();
 
   glutSwapBuffers();
   glFlush();
@@ -36,14 +67,7 @@ void init()
 {
   glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
   glClearColor(238.0 / 255, 236.0 / 255, 238.0 / 255, 1);
-
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-
-  //Orthographic Projection
-  glOrtho(-1.f, -1.f, -1.f, 1.f, 1.f, -1.f);
-  glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();
+  set_orthographic();
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
