@@ -39,7 +39,7 @@ Dataset DataSetReader::read() {
   if (degree == 1) {
     return tester1;
   } else if (degree == 2) {
-    return tester2;
+    return tester3;
   } else if (degree == 3) {
     return tester3;
   }

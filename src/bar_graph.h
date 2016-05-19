@@ -58,7 +58,7 @@ void BarGraph::display()
     Vertex v2 = {0.8, height, 0, graph_lines_color.r, graph_lines_color.g, graph_lines_color.b, graph_lines_color.a};
     Primitive::line(v1, v2, 1);
     ostringstream ss;
-    ss << i * (max_x) / 10;
+    ss << i * (float) max_x / 10;
     std::string s(ss.str());
     Primitive::write(s, -0.9, height);
   }
