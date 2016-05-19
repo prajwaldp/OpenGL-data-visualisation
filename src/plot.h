@@ -1,6 +1,8 @@
 #ifndef PLOT_H
 #define PLOT_H
 
+#include <math.h>
+
 class Plot
 {
 public:
@@ -17,18 +19,16 @@ void Plot::display()
   DataSetReader reader(2);
   X = reader.read();
 
-  max_x = 0;
-  max_y = 0;
-  min_x = 0;
-  min_y = 0;
+  max_x = min_x = (int)X[0].x;
+  max_y = min_y = (int)X[0].y;
 
   for (i = 0; i < X.size(); i++) {
     if (max_x < X[i].x) {
-      max_x = X[i].x;
+      max_x = ceil(X[i].x);
     }
 
     if (max_y < X[i].y) {
-      max_y = X[i].y;
+      max_y = ceil(X[i].y);
     }
 
     if (min_x > X[i].x) {
@@ -39,9 +39,6 @@ void Plot::display()
       min_y = X[i].y;
     }
   }
-
-  max_x += 1;
-  max_y += 1;
 
   Color border_color = { 77 / 255.0, 83 / 255.0, 89 / 255.0, 1 };
 
@@ -62,7 +59,7 @@ void Plot::display()
     Vertex v2 = {0.8, height, 0, graph_lines_color.r, graph_lines_color.g, graph_lines_color.b, graph_lines_color.a};
     Primitive::line(v1, v2, 1);
     ostringstream ss;
-    ss << i * (float) max_x / 10;
+    ss << min_x + i * (float) (max_x - min_x) / 10;
     std::string s(ss.str());
     Primitive::write(s, -0.9, height);
 
@@ -71,19 +68,20 @@ void Plot::display()
     Vertex v4 = {width, 0.8, 0, graph_lines_color.r, graph_lines_color.g, graph_lines_color.b, graph_lines_color.a};
     Primitive::line(v3, v4, 1);
     ostringstream ss1;
-    ss1 << i * (float) max_y / 10;
+    ss1 << min_y + i * (float) (max_y - min_y) / 10;
     std::string s1(ss1.str());
     Primitive::write(s1, width, -0.84);
   }
 
   GLfloat x, y;
-  GLfloat offset = 0.8 / (max_x - min_x);
-  x = -0.8 + 1.6 * X[0].x / (max_x - min_x);
-  y = -0.8 + 1.6 * X[0].y / (max_y - min_y);
+  GLfloat offset = 0.01;
+  x = -0.8 + 1.6 * (X[0].x - min_x) / (max_x - min_x);
+  y = -0.8 + 1.6 * (X[0].y - min_y) / (max_y - min_y);
   Vertex old_v = {x, y, 0, graph_color.r, graph_color.g, graph_color.b, graph_color.a};
   for (i = 0; i < X.size(); i++) {
-    x = -0.8 + 1.6 * X[i].x / (max_x - min_x);
-    y = -0.8 + 1.6 * X[i].y / (max_y - min_y);
+    x = -0.8 + 1.6 * (X[i].x - min_x) / (max_x - min_x);
+    y = -0.8 + 1.6 * (X[i].y - min_y) / (max_y - min_y);
+    cout << X[i].label << "\t" << x << "\t" << y << endl;
     Vertex new_v = {x, y, 0, graph_color.r, graph_color.g, graph_color.b, graph_color.a};
     Primitive::line(new_v, old_v, 1);
     Primitive::point(new_v, 10);

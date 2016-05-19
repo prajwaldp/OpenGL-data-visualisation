@@ -3,6 +3,8 @@
 
 #include "../lib/csv.h"
 
+string DATA_FILE = "data/co2_budget.csv";
+
 using namespace io;
 
 class DataSetReader
@@ -20,15 +22,18 @@ Dataset DataSetReader::read() {
   Data item1, item2, item3;
   Dataset tester1, tester2, tester3;
 
-  CSVReader<2> in1("data.json");
-  CSVReader<3> in2("data.json");
-  CSVReader<4> in3("data.json");
-
-  cout << "Reading data\n" << "Degree = " << degree << endl;
+  CSVReader<2> in1(DATA_FILE);
+  CSVReader<3> in2(DATA_FILE);
+  CSVReader<4> in3(DATA_FILE);
 
   in1.read_header(ignore_extra_column, "label", "x");
   while(in1.read_row(item1.label, item1.x)){
     tester1.push_back(item1);
+  }
+
+  in2.read_header(ignore_extra_column, "label", "x", "y");
+  while(in2.read_row(item2.label, item2.x, item2.y)){
+    tester2.push_back(item2);
   }
 
   in3.read_header(ignore_extra_column, "label", "x", "y", "z");
@@ -39,7 +44,7 @@ Dataset DataSetReader::read() {
   if (degree == 1) {
     return tester1;
   } else if (degree == 2) {
-    return tester3;
+    return tester2;
   } else if (degree == 3) {
     return tester3;
   }
