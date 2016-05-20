@@ -3,7 +3,8 @@
 
 #include "../lib/csv.h"
 
-string DATA_FILE = "data/co2_budget.csv";
+// string DATA_FILE = "data/co2_budget.csv";
+string DATA_FILE = "data.json";
 
 using namespace io;
 

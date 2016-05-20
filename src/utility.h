@@ -4,6 +4,8 @@
 namespace Utility {
   void menu(int);
   void show_menu();
+  void set_perspective();
+  void set_orthographic();
 }
 
 void Utility::menu(int id) {
@@ -46,6 +48,12 @@ void Utility::menu(int id) {
     Stem3D stem_3d;
     stem_3d.display();
     break;
+
+  case 7:
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    PieChart pie_chart;
+    pie_chart.display();
+    break;
   }
 
   glutPostRedisplay();
@@ -60,7 +68,30 @@ void Utility::show_menu() {
   glutAddMenuEntry("Stem", 4);
   glutAddMenuEntry("3D Scatter Plot", 5);
   glutAddMenuEntry("3D Stem", 6);
+  glutAddMenuEntry("Pie Chart", 7);
   glutAttachMenu(GLUT_RIGHT_BUTTON);
+}
+
+void Utility::set_orthographic()
+{
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+
+  //Orthographic Projection
+  glOrtho(-1.f, -1.f, -1.f, 1.f, 1.f, -1.f);
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+}
+
+void Utility::set_perspective()
+{
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  gluPerspective(90, (float) WINDOW_WIDTH / WINDOW_HEIGHT, 1, 1000);
+
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+  gluLookAt(0, 0, 500, 0, 0, 0, 0, 1, 0);
 }
 
 #endif
