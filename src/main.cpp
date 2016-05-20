@@ -34,11 +34,49 @@ void set_perspective()
 {
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  gluPerspective(90, (float) WINDOW_WIDTH / WINDOW_HEIGHT, 1, 10);
+  gluPerspective(90, (float) WINDOW_WIDTH / WINDOW_HEIGHT, 1, 1000);
 
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  gluLookAt(0, 0, 1, 0, 0, 0, 0, 1, 0);
+  gluLookAt(0, 0, 500, 0, 0, 0, 0, 1, 0);
+}
+
+void key(unsigned char k, int x, int y)
+{
+  switch (k) {
+  case 'h':
+    if (theta_y > 0) {
+      theta_y -= 5;
+    }
+    ScatterPlot3D scatter_plot_3d;
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    scatter_plot_3d.display();
+
+    break;
+
+  case 'l':
+    if (theta_y < 90) {
+      theta_y += 5;
+    }
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    scatter_plot_3d.display();
+
+  case 'j':
+    if (theta_x > 0) {
+      theta_x -= 5;
+    }
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    scatter_plot_3d.display();
+
+    break;
+
+  case 'k':
+    if (theta_x < 90) {
+      theta_x += 5;
+    }
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    scatter_plot_3d.display();
+  }
 }
 
 void display()
@@ -49,7 +87,7 @@ void display()
   glPushMatrix();
   set_perspective();
   glColor3f(1, 1, 1);
-  font.Render("Hello");
+  //font.Render("Hello");
   set_orthographic();
   glPopMatrix();
 
@@ -81,6 +119,7 @@ int main(int argc, char* argv[])
 
   glutDisplayFunc(display);
   glutReshapeFunc(reshape);
+  glutKeyboardFunc(key);
 
   init();
   Utility::show_menu();

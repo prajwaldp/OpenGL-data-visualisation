@@ -66,15 +66,15 @@ void ScatterPlot3D::display() {
   // drawing the 3d axes
   glPushMatrix();
   glScalef(0.5, 0.5, 0.5);
-  glRotatef(45, 1, 0, 0);
-  glRotatef(45, 0, 1, 0);
+  glRotatef(theta_x, 1, 0, 0);
+  glRotatef(theta_y, 0, 1, 0);
   Primitive::unfilled_cube(v1, v2, v3, v4, v5, v6, v7, v8, 1);
   glPopMatrix();
 
   glPushMatrix();
   glScalef(0.5, 0.5, 0.5);
-  glRotatef(45, 1, 0, 0);
-  glRotatef(45, 0, 1, 0);
+  glRotatef(theta_x, 1, 0, 0);
+  glRotatef(theta_y, 0, 1, 0);
   for (i = 0; i <= 10; i++) {
     horizontal = -0.8 + i * 1.6 / 10;
     a = { -0.8, horizontal, 0.8, graph_lines_color.r, graph_lines_color.g, graph_lines_color.b, graph_lines_color.a };
@@ -109,8 +109,8 @@ void ScatterPlot3D::display() {
 
   glPushMatrix();
   glScalef(0.5, 0.5, 0.5);
-  glRotatef(45, 1, 0, 0);
-  glRotatef(45, 0, 1, 0);
+  glRotatef(theta_x, 1, 0, 0);
+  glRotatef(theta_y, 0, 1, 0);
   for (i = 0; i < X.size(); i++) {
     x = -0.8 + 1.6 * (X[i].x - min_x) / (max_x - min_x);
     y = -0.8 + 1.6 * (X[i].y - min_y) / (max_y - min_y);
