@@ -39,14 +39,14 @@ void Utility::menu(int id) {
 
   case 5:
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    ScatterPlot3D scatter_plot_3d;
-    scatter_plot_3d.display();
+    Plot3D plot_3d;
+    plot_3d.display();
     break;
 
   case 6:
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    Stem3D stem_3d;
-    stem_3d.display();
+    ScatterPlot3D scatter_plot_3d;
+    scatter_plot_3d.display();
     break;
 
   case 7:
@@ -66,8 +66,8 @@ void Utility::show_menu() {
   glutAddMenuEntry("Bar Graph", 2);
   glutAddMenuEntry("Scatter Plot", 3);
   glutAddMenuEntry("Stem", 4);
-  glutAddMenuEntry("3D Scatter Plot", 5);
-  glutAddMenuEntry("3D Stem", 6);
+  glutAddMenuEntry("3D Plot", 5);
+  glutAddMenuEntry("3D Scatter Plot", 6);
   glutAddMenuEntry("Pie Chart", 7);
   glutAttachMenu(GLUT_RIGHT_BUTTON);
 }

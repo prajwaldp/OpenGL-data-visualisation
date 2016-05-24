@@ -1,12 +1,12 @@
-#ifndef STEM_3D_H
-#define STEM_3D_H
+#ifndef PLOT_3D_H
+#define PLOT_3D_H
 
-class Stem3D {
+class Plot3D {
 public:
   void display();
 };
 
-void Stem3D::display() {
+void Plot3D::display() {
 
   int i;
   int max_x, max_y, min_x, min_y, max_z, min_z;
@@ -109,15 +109,20 @@ void Stem3D::display() {
   glScalef(0.5, 0.5, 0.5);
   glRotatef(45, 1, 0, 0);
   glRotatef(45, 0, 1, 0);
+
+  x = -0.8 + 1.6 * (X[0].x - min_x) / (max_x - min_x);
+  y = -0.8 + 1.6 * (X[0].y - min_y) / (max_y - min_y);
+  z = -0.8 + 1.6 * (X[0].z - min_z) / (max_z - min_z);
+  Vertex old_v = {x, y, z, graph_color.r, graph_color.g, graph_color.b, graph_color.a};
   for (i = 0; i < X.size(); i++) {
     x = -0.8 + 1.6 * (X[i].x - min_x) / (max_x - min_x);
     y = -0.8 + 1.6 * (X[i].y - min_y) / (max_y - min_y);
     z = -0.8 + 1.6 * (X[i].z - min_z) / (max_z - min_z);
-    Vertex v1 = {x, y, z, graph_color.r, graph_color.g, graph_color.b, graph_color.a};
-    Vertex v2 = {x, -0.8, z, graph_color.r, graph_color.b, graph_color.g, graph_color.a};
-    Primitive::point(v1, 10);
-    Primitive::line(v1, v2, 1);
+    Vertex new_v = {x, y, z, graph_color.r, graph_color.g, graph_color.b, graph_color.a};
+    Primitive::point(new_v, 5);
+    Primitive::line(old_v, new_v, 1);
     Primitive::write(X[i].label, x, y, z);
+    old_v = new_v;
   }
   glPopMatrix();
 }

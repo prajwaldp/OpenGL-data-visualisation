@@ -15,8 +15,8 @@ using namespace std;
 #include "bar_graph.h"
 #include "scatter_plot.h"
 #include "stem.h"
+#include "plot_3d.h"
 #include "scatter_plot_3d.h"
-#include "stem_3d.h"
 #include "pie_chart.h"
 #include "utility.h"
 
