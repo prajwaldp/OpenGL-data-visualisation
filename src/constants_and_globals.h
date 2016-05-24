@@ -10,4 +10,6 @@ float theta_y = 45;
 float theta_x_2 = 45;
 float theta_y_2 = 45;
 
+int current_data_set = 1;
+
 #endif

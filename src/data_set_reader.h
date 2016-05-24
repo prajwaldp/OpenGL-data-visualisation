@@ -3,10 +3,19 @@
 
 #include "../lib/csv.h"
 
-//string DATA_FILE = "data/co2_budget.csv";
-string DATA_FILE = "data.json";
-
 using namespace io;
+
+string get_data_set()
+{
+  switch (current_data_set) {
+  case 0:
+    return "data/co2_budget.csv";
+  case 1:
+    return "data.json";
+  default:
+    return "data/co2_budget.csv";
+  }
+}
 
 class DataSetReader
 {
@@ -23,9 +32,9 @@ Dataset DataSetReader::read() {
   Data item1, item2, item3;
   Dataset tester1, tester2, tester3;
 
-  CSVReader<2> in1(DATA_FILE);
-  CSVReader<3> in2(DATA_FILE);
-  CSVReader<4> in3(DATA_FILE);
+  CSVReader<2> in1(get_data_set());
+  CSVReader<3> in2(get_data_set());
+  CSVReader<4> in3(get_data_set());
 
   in1.read_header(ignore_extra_column, "label", "x");
   while(in1.read_row(item1.label, item1.x)){

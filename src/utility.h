@@ -3,6 +3,7 @@
 
 namespace Utility {
   void menu(int);
+  void sub_menu(int);
   void show_menu();
   void set_perspective();
   void set_orthographic();
@@ -59,9 +60,19 @@ void Utility::menu(int id) {
   glutPostRedisplay();
 }
 
+void Utility::sub_menu(int id) {
+  current_data_set = id;
+}
+
 void Utility::show_menu() {
-  glutCreateMenu(Utility::menu);
+  int main_menu, sub_menu;
+  sub_menu = glutCreateMenu(Utility::sub_menu);
+  glutAddMenuEntry("CO2 Budget", 0);
+  glutAddMenuEntry("Countries", 1);
+
+  main_menu = glutCreateMenu(Utility::menu);
   glutAddMenuEntry("Quit", 0);
+  glutAddSubMenu("Choose dataset", sub_menu);
   glutAddMenuEntry("Plot", 1);
   glutAddMenuEntry("Bar Graph", 2);
   glutAddMenuEntry("Scatter Plot", 3);
