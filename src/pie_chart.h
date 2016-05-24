@@ -82,6 +82,14 @@ void PieChart::display(GLint numberOfSides=100)
     legend.y -= 0.06;
 
   }
+
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+
+  //Orthographic Projection
+  glOrtho(-1.f, -1.f, -1.f, 1.f, 1.f, -1.f);
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
 }
 
 #endif
