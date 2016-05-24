@@ -40,6 +40,8 @@ void key(unsigned char k, int x, int y)
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     scatter_plot_3d.display();
 
+    break;
+
   case 'j':
     if (theta_x > 0) {
       theta_x -= 5;
@@ -55,6 +57,8 @@ void key(unsigned char k, int x, int y)
     }
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     scatter_plot_3d.display();
+
+    break;
   }
 }
 
