@@ -22,12 +22,14 @@ using namespace std;
 
 void key(unsigned char k, int x, int y)
 {
+  Plot3D plot_3d;
+  ScatterPlot3D scatter_plot_3d;
+
   switch (k) {
   case 'h':
     if (theta_y > 0) {
       theta_y -= 5;
     }
-    ScatterPlot3D scatter_plot_3d;
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     scatter_plot_3d.display();
 
@@ -57,6 +59,42 @@ void key(unsigned char k, int x, int y)
     }
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     scatter_plot_3d.display();
+
+    break;
+
+  case 'u':
+    if (theta_y_2 > 0) {
+      theta_y_2 -= 5;
+    }
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    plot_3d.display();
+
+    break;
+
+  case 'p':
+    if (theta_y_2 < 90) {
+      theta_y_2 += 5;
+    }
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    plot_3d.display();
+
+    break;
+
+  case 'i':
+    if (theta_x_2 > 0) {
+      theta_x_2 -= 5;
+    }
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    plot_3d.display();
+
+    break;
+
+  case 'o':
+    if (theta_x_2 < 90) {
+      theta_x_2 += 5;
+    }
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    plot_3d.display();
 
     break;
   }
