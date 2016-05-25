@@ -70,6 +70,7 @@ void Utility::show_menu() {
   glutAddMenuEntry("CO2 Budget (in gtc)", 0);
   glutAddMenuEntry("CO2 Emmissions (kt) and per capita", 1);
   glutAddMenuEntry("Access to electricity (in %)", 2);
+  glutAddMenuEntry("The line x = y = z", 3);
 
   main_menu = glutCreateMenu(Utility::menu);
   glutAddMenuEntry("Quit", 0);
