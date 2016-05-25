@@ -20,6 +20,8 @@ using namespace std;
 #include "pie_chart.h"
 #include "utility.h"
 
+int splash_screen_displayed = 0;
+
 void key(unsigned char k, int x, int y)
 {
   Plot3D plot_3d;
@@ -100,18 +102,39 @@ void key(unsigned char k, int x, int y)
   }
 }
 
+void display_splash()
+{
+  FTPixmapFont font("/home/prajwal/workspace/projects/cpp/visualize/Inconsolata-Bold.ttf");
+
+  font.FaceSize(50);
+  glColor3f(0, 0, 0);
+  glRasterPos3f(-0.8, 0.6, 0);
+  font.Render("Data Visualization using OpenGL");
+
+  font.FaceSize(25);
+  glColor3f(15 / 255.0, 15 / 155.0, 15 / 255.0);
+  glRasterPos3f(-0.8, 0, 0);
+  font.Render("Prajwal D Prakash");
+  glRasterPos3f(-0.8, -0.1, 0);
+  font.Render("1BY13CS053");
+
+  glRasterPos3f(-0.8, -0.3, 0);
+  font.Render("Ravi C");
+  glRasterPos3f(-0.8, -0.4, 0);
+  font.Render("1BY13CS061");
+
+  font.FaceSize(25);
+  glColor3f(50 / 255.0, 50 / 155.0, 50 / 255.0);
+  glRasterPos3f(0.4, -0.8, 0);
+  font.Render("Right click to continue");
+}
+
 void display()
 {
-  FTTextureFont font("/usr/share/fonts/TTF/Inconsolata-Bold.ttf");
-
-  font.FaceSize(72);
-  glPushMatrix();
-  Utility::set_perspective();
-  glColor3f(1, 1, 1);
-  //font.Render("Hello");
-  Utility::set_orthographic();
-  glPopMatrix();
-
+  if (splash_screen_displayed == 0) {
+    display_splash();
+    splash_screen_displayed = 1;
+  }
   glutSwapBuffers();
   glFlush();
 }
