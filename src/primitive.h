@@ -61,7 +61,7 @@ void Primitive::unfilled_cube(Vertex v1, Vertex v2, Vertex v3, Vertex v4, Vertex
 }
 
 void Primitive::write(string text, GLfloat x, GLfloat y, GLfloat z=0) {
-  FTPixmapFont font("/usr/share/fonts/TTF/Inconsolata-Bold.ttf");
+  FTPixmapFont font("/home/prajwal/workspace/projects/cpp/visualize/Inconsolata-Bold.ttf");
 
   // If something went wrong, bail out.
   if(font.Error()) {

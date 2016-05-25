@@ -125,6 +125,16 @@ void Plot3D::display() {
     old_v = new_v;
   }
   glPopMatrix();
+
+  FTPixmapFont font("/home/prajwal/workspace/projects/cpp/visualize/Inconsolata-Bold.ttf");
+  font.FaceSize(32);
+  glColor3f(30 / 255.0, 30 / 155.0, 30 / 255.0);
+  glRasterPos3f(0.4, -0.7, 0);
+  font.Render("Navigation Controls");
+  font.FaceSize(16);
+  glColor3f(50 / 255.0, 50 / 155.0, 50 / 255.0);
+  glRasterPos3f(0.4, -0.8, 0);
+  font.Render("u - left, p - right, i -  up, o - down");
 }
 
 #endif
