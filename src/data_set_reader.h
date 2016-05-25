@@ -11,7 +11,9 @@ string get_data_set()
   case 0:
     return "data/co2_budget.csv";
   case 1:
-    return "data.json";
+    return "data/co2_emmissions.csv";
+  case 2:
+    return "data/access_to_electricity.csv";
   default:
     return "data/co2_budget.csv";
   }

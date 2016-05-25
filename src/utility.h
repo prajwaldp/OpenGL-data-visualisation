@@ -67,8 +67,9 @@ void Utility::sub_menu(int id) {
 void Utility::show_menu() {
   int main_menu, sub_menu;
   sub_menu = glutCreateMenu(Utility::sub_menu);
-  glutAddMenuEntry("CO2 Budget", 0);
-  glutAddMenuEntry("Countries", 1);
+  glutAddMenuEntry("CO2 Budget (in gtc)", 0);
+  glutAddMenuEntry("CO2 Emmissions (kt) and per capita", 1);
+  glutAddMenuEntry("Access to electricity (in %)", 2);
 
   main_menu = glutCreateMenu(Utility::menu);
   glutAddMenuEntry("Quit", 0);
